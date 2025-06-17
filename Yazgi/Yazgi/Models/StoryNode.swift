@@ -117,7 +117,7 @@ struct Choice: Codable {
 struct Condition: Codable {
     var type: ConditionType
     var target: String
-    var operator: ComparisonOperator
+    var `operator`: ComparisonOperator
     var value: Any
     var description: String
 }
@@ -165,7 +165,7 @@ enum LocationType: String, Codable {
     case home = "Ev"
     case work = "İş"
     case school = "Okul"
-    case public = "Kamusal"
+    case `public` = "Kamusal"
     case nature = "Doğa"
     case entertainment = "Eğlence"
     case shopping = "Alışveriş"
