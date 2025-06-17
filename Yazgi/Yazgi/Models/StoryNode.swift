@@ -117,8 +117,8 @@ struct Choice: Codable {
 struct Condition: Codable {
     var type: ConditionType
     var target: String
-    var operator: ComparisonOperator
-    var value: Any
+    var comparisonOperator: ComparisonOperator
+    var value: Int
     var description: String
 }
 
@@ -165,11 +165,18 @@ enum LocationType: String, Codable {
     case home = "Ev"
     case work = "İş"
     case school = "Okul"
-    case public = "Kamusal"
+    case `public` = "Kamusal"
     case nature = "Doğa"
     case entertainment = "Eğlence"
     case shopping = "Alışveriş"
     case transport = "Ulaşım"
+}
+
+struct LocationEffect: Codable {
+    var target: String
+    var type: StoryEffectType
+    var value: Int
+    var duration: TimeInterval?
 }
 
 struct StoryCharacter: Codable {
@@ -211,7 +218,7 @@ struct Atmosphere: Codable {
 struct Requirement: Codable {
     var type: RequirementType
     var target: String
-    var value: Any
+    var value: Int
     var description: String
 }
 

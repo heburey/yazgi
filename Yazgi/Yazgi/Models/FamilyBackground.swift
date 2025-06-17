@@ -117,7 +117,7 @@ extension FamilyBackground {
                     age: 42,
                     isAlive: true,
                     occupation: "Doktor",
-                    education: .doctorate,
+                    education: .phd,
                     relationship: 90,
                     influence: 75,
                     supportLevel: 95,

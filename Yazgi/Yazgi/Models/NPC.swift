@@ -53,7 +53,7 @@ struct NPC: Identifiable, Codable {
     
     // Etkileşim geçmişi
     var interactions: [Interaction]
-    var sharedExperiences: [SharedExperience]
+    var sharedExperiences: [NPCSharedExperience]
     var memories: [Memory]
     
     // Karakter üzerindeki etkileri
@@ -147,7 +147,7 @@ struct Interaction: Identifiable, Codable {
     var triggers: [String]?
 }
 
-struct SharedExperience: Identifiable, Codable {
+struct NPCSharedExperience: Identifiable, Codable {
     let id: UUID = UUID()
     let date: Date
     let type: String
@@ -198,7 +198,7 @@ extension NPC {
                 )
             ],
             sharedExperiences: [
-                SharedExperience(
+                NPCSharedExperience(
                     date: Date(),
                     type: "Okul Projesi",
                     description: "Biyoloji projesi hazırlığı",
@@ -367,7 +367,7 @@ extension NPC {
             )
         ],
         sharedExperiences: [
-            SharedExperience(
+            NPCSharedExperience(
                 date: Date(),
                 type: "Tatil",
                 description: "Yaz tatilinde kamp macerası",
@@ -452,7 +452,7 @@ extension NPC {
             )
         ],
         sharedExperiences: [
-            SharedExperience(
+            NPCSharedExperience(
                 date: Date(),
                 type: "Okul Projesi",
                 description: "Edebiyat kulübü yıl sonu gösterisi",
