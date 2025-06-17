@@ -3,6 +3,7 @@ import Foundation
 struct CulturalProfile: Codable {
     // MARK: - Basic Information
     var country: String
+    var countryCode: String
     var region: String?
     var city: String?
     var language: String
@@ -200,6 +201,7 @@ struct CareerProfile: Codable {
     var qualifications: [String]
     var opportunities: [String]
     var challenges: [String]
+    var commonJobs: [String]
 }
 
 struct WorkCulture: Codable {
@@ -276,6 +278,7 @@ extension CulturalProfile {
     static var preview: CulturalProfile {
         CulturalProfile(
             country: "Türkiye",
+            countryCode: "TR",
             region: "Marmara",
             city: "İstanbul",
             language: "Türkçe",
@@ -333,7 +336,8 @@ extension CulturalProfile {
                 industries: [],
                 qualifications: [],
                 opportunities: [],
-                challenges: []
+                challenges: [],
+                commonJobs: ["Öğretmen", "Mühendis", "Doktor", "Öğrenci"]
             ),
             workCulture: WorkCulture(
                 values: [],
@@ -362,5 +366,9 @@ extension CulturalProfile {
                 restrictions: nil
             )
         )
+    }
+    
+    static var turkiye: CulturalProfile {
+        return CulturalProfile.preview
     }
 } 

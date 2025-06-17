@@ -2,7 +2,7 @@ import Foundation
 
 struct Relationship: Codable {
     // MARK: - Basic Information
-    var id: UUID = UUID()
+    var id: UUID
     var type: RelationshipType
     var status: RelationshipStatus
     var startDate: Date
@@ -27,7 +27,7 @@ struct Relationship: Codable {
     var sharedExperiences: [SharedExperience]
     var milestones: [RelationshipMilestone]
     var conflicts: [Conflict]
-    var effects: [RelationshipEffect]
+    var effects: [RelationshipEffectModel]
     
     // MARK: - Communication & Interaction
     var communicationStyle: CommunicationStyle
@@ -40,6 +40,37 @@ struct Relationship: Codable {
     var boundaries: [Boundary]
     var expectations: [String]
     var dealBreakers: [String]
+    
+    init(type: RelationshipType, status: RelationshipStatus, startDate: Date, endDate: Date? = nil, characterName: String, characterAge: Int, characterOccupation: String? = nil, characterTraits: [String], intimacy: Int, trust: Int, respect: Int, compatibility: Int, tension: Int, influence: Int, memories: [Memory], sharedExperiences: [SharedExperience], milestones: [RelationshipMilestone], conflicts: [Conflict], effects: [RelationshipEffectModel], communicationStyle: CommunicationStyle, interactionFrequency: InteractionFrequency, lastInteraction: Date, nextPlannedInteraction: Date? = nil, sharedInterests: [String], boundaries: [Boundary], expectations: [String], dealBreakers: [String]) {
+        self.id = UUID()
+        self.type = type
+        self.status = status
+        self.startDate = startDate
+        self.endDate = endDate
+        self.characterName = characterName
+        self.characterAge = characterAge
+        self.characterOccupation = characterOccupation
+        self.characterTraits = characterTraits
+        self.intimacy = intimacy
+        self.trust = trust
+        self.respect = respect
+        self.compatibility = compatibility
+        self.tension = tension
+        self.influence = influence
+        self.memories = memories
+        self.sharedExperiences = sharedExperiences
+        self.milestones = milestones
+        self.conflicts = conflicts
+        self.effects = effects
+        self.communicationStyle = communicationStyle
+        self.interactionFrequency = interactionFrequency
+        self.lastInteraction = lastInteraction
+        self.nextPlannedInteraction = nextPlannedInteraction
+        self.sharedInterests = sharedInterests
+        self.boundaries = boundaries
+        self.expectations = expectations
+        self.dealBreakers = dealBreakers
+    }
 }
 
 enum ExperienceType: String, Codable {
@@ -54,13 +85,25 @@ enum ExperienceType: String, Codable {
 }
 
 struct RelationshipMilestone: Codable {
+    var id: UUID
     var title: String
     var description: String
     var date: Date
     var type: MilestoneType
     var significance: Int // 1-10
-    var effects: [RelationshipEffect]
+    var effects: [RelationshipEffectModel]
     var memories: [Memory]
+    
+    init(title: String, description: String, date: Date, type: MilestoneType, significance: Int, effects: [RelationshipEffectModel], memories: [Memory]) {
+        self.id = UUID()
+        self.title = title
+        self.description = description
+        self.date = date
+        self.type = type
+        self.significance = significance
+        self.effects = effects
+        self.memories = memories
+    }
 }
 
 enum MilestoneType: String, Codable {
@@ -75,14 +118,27 @@ enum MilestoneType: String, Codable {
 }
 
 struct Conflict: Codable {
+    var id: UUID
     var title: String
     var description: String
     var date: Date
     var type: ConflictType
     var severity: Int // 1-10
     var resolution: String?
-    var effects: [RelationshipEffect]
+    var effects: [RelationshipEffectModel]
     var lessons: [String]
+    
+    init(title: String, description: String, date: Date, type: ConflictType, severity: Int, resolution: String? = nil, effects: [RelationshipEffectModel], lessons: [String]) {
+        self.id = UUID()
+        self.title = title
+        self.description = description
+        self.date = date
+        self.type = type
+        self.severity = severity
+        self.resolution = resolution
+        self.effects = effects
+        self.lessons = lessons
+    }
 }
 
 enum ConflictType: String, Codable {
@@ -118,11 +174,21 @@ enum InteractionFrequency: String, Codable {
 }
 
 struct Boundary: Codable {
+    var id: UUID
     var type: BoundaryType
     var description: String
     var importance: Int // 1-10
     var consequences: [String]
     var isRespected: Bool
+    
+    init(type: BoundaryType, description: String, importance: Int, consequences: [String], isRespected: Bool) {
+        self.id = UUID()
+        self.type = type
+        self.description = description
+        self.importance = importance
+        self.consequences = consequences
+        self.isRespected = isRespected
+    }
 }
 
 enum BoundaryType: String, Codable {
@@ -134,6 +200,25 @@ enum BoundaryType: String, Codable {
     case digital = "Dijital"
     case time = "Zaman"
     case space = "Alan"
+}
+
+// Local RelationshipEffect to avoid ambiguity with SharedTypes
+struct RelationshipEffectModel: Codable {
+    var id: UUID
+    var type: RelationshipEffectType
+    var value: Int
+    var duration: TimeInterval?
+    var description: String
+    var target: String
+    
+    init(type: RelationshipEffectType, value: Int, duration: TimeInterval? = nil, description: String, target: String) {
+        self.id = UUID()
+        self.type = type
+        self.value = value
+        self.duration = duration
+        self.description = description
+        self.target = target
+    }
 }
 
 // MARK: - Preview Helper

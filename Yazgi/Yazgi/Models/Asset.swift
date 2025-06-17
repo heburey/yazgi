@@ -1,7 +1,7 @@
 import Foundation
 
 struct Asset: Identifiable, Codable {
-    var id: UUID = UUID()
+    var id: UUID
     var name: String
     var type: AssetType
     var value: Double
@@ -17,22 +17,25 @@ struct Asset: Identifiable, Codable {
     var isShared: Bool
     var coOwners: [String]?
     
-    // Hesaplanan özellikler
-    var currentValue: Double {
-        if let rate = appreciationRate {
-            let years = Calendar.current.dateComponents([.year], from: purchaseDate, to: Date()).year ?? 0
-            return value * pow(1 + rate, Double(years))
-        }
-        return value
+    init(name: String, type: AssetType, value: Double, purchaseDate: Date, condition: AssetCondition, location: String? = nil, description: String? = nil, monthlyExpense: Double? = nil, monthlyIncome: Double? = nil, appreciationRate: Double? = nil, insurance: Insurance? = nil, loanBalance: Double? = nil, isShared: Bool = false, coOwners: [String]? = nil) {
+        self.id = UUID()
+        self.name = name
+        self.type = type
+        self.value = value
+        self.purchaseDate = purchaseDate
+        self.condition = condition
+        self.location = location
+        self.description = description
+        self.monthlyExpense = monthlyExpense
+        self.monthlyIncome = monthlyIncome
+        self.appreciationRate = appreciationRate
+        self.insurance = insurance
+        self.loanBalance = loanBalance
+        self.isShared = isShared
+        self.coOwners = coOwners
     }
     
-    var monthlyNetIncome: Double {
-        (monthlyIncome ?? 0) - (monthlyExpense ?? 0)
-    }
-    
-    var equity: Double {
-        currentValue - (loanBalance ?? 0)
-    }
+    // Computed properties are defined in SharedTypes.swift extension
 }
 
 enum AssetType: String, Codable {

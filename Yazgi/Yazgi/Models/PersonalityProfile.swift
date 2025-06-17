@@ -7,6 +7,15 @@ struct PersonalityProfile: Codable {
     var characteristics: [String: Int] // 0-100 scale
     var culturalAdaptation: Int // 0-100 scale for adaptation to cultural values
     
+    // Computed properties for compatibility with Character.swift
+    var extroversion: Int {
+        return characteristics["extraversion"] ?? 50
+    }
+    
+    var agreeableness: Int {
+        return characteristics["agreeableness"] ?? 50
+    }
+    
     // MARK: - Demographics & Identity
     var sexualOrientation: SexualOrientation
     var politicalAlignment: PoliticalAlignment

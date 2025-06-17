@@ -31,6 +31,15 @@ struct Character: Codable {
     var reputation: Int // 0-100
     var influence: Int // 0-100
     
+    var netWorth: Double {
+        return money + assets.reduce(0) { $0 + $1.currentValue }
+    }
+    var intelligence: Int // 0-100
+    var aura: Int // 0-100
+    var beauty: Int // 0-100
+    var luck: Int // 0-100
+    var karma: Int // -100 to +100
+    
     // MARK: - Systems
     var finances: Finances
     var healthSystem: Health
@@ -242,6 +251,12 @@ enum LifeEventType: String, Codable {
 
 // Extension to handle effect application
 extension Character {
+    mutating func apply(_ effects: [CharacterEffect]) {
+        for effect in effects {
+            applyEffect(effect)
+        }
+    }
+    
     mutating func applyEffect(_ effect: CharacterEffect) {
         switch effect.type {
         case .health:
@@ -258,9 +273,15 @@ extension Character {
             reputation = max(0, min(100, reputation + effect.value))
         case .influence:
             influence = max(0, min(100, influence + effect.value))
+        case .intelligence:
+            intelligence = max(0, min(100, intelligence + effect.value))
         default:
             break // Handle other effect types as needed
         }
+    }
+    
+    mutating func addLifeEvent(_ event: LifeEvent) {
+        // Life events are handled via SharedTypes extension
     }
 }
 
@@ -290,6 +311,11 @@ extension Character {
             money: 1000.0,
             reputation: 70,
             influence: 60,
+            intelligence: 75,
+            aura: 65,
+            beauty: 70,
+            luck: 60,
+            karma: 10,
             finances: Finances(),
             healthSystem: Health(),
             skills: [],

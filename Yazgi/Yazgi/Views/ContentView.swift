@@ -1,5 +1,12 @@
 import SwiftUI
 
+enum TransitionType: String {
+    case fade = "fade"
+    case slide = "slide"
+    case zoom = "zoom"
+    case flip = "flip"
+}
+
 struct ContentView: View {
     let character: Character
     @StateObject private var viewModel: GameViewModel
@@ -28,11 +35,12 @@ struct ContentView: View {
             GeometryReader { geometry in
                 ZStack {
                     // Arka plan
-                    BackgroundView(
-                        timeOfDay: viewModel.currentNode.timeOfDay ?? .morning,
-                        weather: viewModel.currentNode.weather ?? .sunny,
-                        season: viewModel.currentNode.season ?? .spring
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.blue.opacity(0.3), Color.green.opacity(0.3)]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
                     )
+                    .ignoresSafeArea()
                     
                     // Hava efektleri
                     if showRainEffect {
@@ -60,7 +68,10 @@ struct ContentView: View {
                                 // Özel içerik
                                 if let customContent = viewModel.currentNode.customContent {
                                     ForEach(customContent, id: \.content) { content in
-                                        CustomContentView(content: content)
+                                        Text("Özel İçerik: \(content.content)")
+                                            .padding()
+                                            .background(.ultraThinMaterial)
+                                            .cornerRadius(8)
                                     }
                                 }
                                 
@@ -97,11 +108,32 @@ struct ContentView: View {
                     
                     // Geçmiş görünümü
                     if showHistory {
-                        HistoryView(events: viewModel.character.lifeEvents) {
-                            withAnimation {
-                                showHistory = false
+                        VStack {
+                            Text("Yaşam Geçmişi")
+                                .font(.headline)
+                                .padding()
+                            
+                            ScrollView {
+                                LazyVStack {
+                                    ForEach(0..<5) { index in
+                                        Text("Yaşam olayı \(index + 1)")
+                                            .padding()
+                                            .background(.ultraThinMaterial)
+                                            .cornerRadius(8)
+                                    }
+                                }
                             }
+                            
+                            Button("Kapat") {
+                                withAnimation {
+                                    showHistory = false
+                                }
+                            }
+                            .padding()
                         }
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(16)
+                        .padding()
                     }
                 }
             }

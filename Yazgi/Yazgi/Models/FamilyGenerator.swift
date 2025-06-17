@@ -166,7 +166,7 @@ struct FamilyGenerator {
     }
     
     private static func generateEducationLevel() -> EducationLevel {
-        let levels: [EducationLevel] = [.elementary, .middleSchool, .highSchool, .bachelor, .master, .doctorate]
+        let levels: [EducationLevel] = [.none, .primary, .highSchool, .bachelor, .master, .phd]
         let weights = [0.1, 0.2, 0.3, 0.25, 0.1, 0.05]
         
         var random = Double.random(in: 0...1)
@@ -361,11 +361,15 @@ struct FamilyGenerator {
         let memoryCount = Int.random(in: 1...3)
         return commonMemories.shuffled().prefix(memoryCount).map { description in
             Memory(
+                title: description,
                 description: description,
-                photo: nil,
                 date: Calendar.current.date(byAdding: .year, value: -Int.random(in: 3...12), to: Date())!,
                 emotionalImpact: Int.random(in: 5...10),
-                type: .family
+                people: ["Büyükanne", "Büyükbaba"],
+                location: "Büyükanne evi",
+                tags: ["aile", "geniş aile"],
+                importance: Int.random(in: 5...10),
+                type: MemoryType.family
             )
         }
     }
@@ -415,11 +419,15 @@ struct FamilyGenerator {
         let memoryCount = Int.random(in: 3...6)
         return commonMemories.shuffled().prefix(memoryCount).map { description in
             Memory(
+                title: description,
                 description: description,
-                photo: nil,
                 date: Calendar.current.date(byAdding: .year, value: -Int.random(in: 5...15), to: Date())!,
                 emotionalImpact: Int.random(in: 5...10),
-                type: .family
+                people: ["Aile"],
+                location: "Ev/Okul",
+                tags: ["çocukluk", "aile"],
+                importance: Int.random(in: 5...10),
+                type: MemoryType.family
             )
         }
     }

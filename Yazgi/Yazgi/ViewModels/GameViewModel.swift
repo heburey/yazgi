@@ -13,6 +13,11 @@ class GameViewModel: ObservableObject {
     @Published var backgroundMusic: String?
     @Published var ambientSound: String?
     
+    // Computed property for backwards compatibility
+    var currentNode: StoryNode {
+        return currentStoryNode ?? StoryNode.default
+    }
+    
     // Alt sistemler
     private let effectManager: EffectManager
     private let decisionEngine: DecisionEngine
@@ -98,6 +103,92 @@ class GameViewModel: ObservableObject {
             currentStoryNode = node
             applyNodeEffects(node)
         }
+    }
+    
+    func selectOption(_ option: StoryOption) {
+        // Seçeneğin etkilerini uygula
+        if let effect = option.effect {
+            applyStoryEffects(effect)
+        }
+        
+        // Sonraki düğüme geç
+        if let nextNodeId = option.nextNodeId {
+            loadStoryNode(nextNodeId)
+        }
+    }
+    
+    private func applyStoryEffects(_ effects: StoryEffects) {
+        // Intelligence change
+        if let intelligence = effects.intelligenceChange {
+            character.intelligence = max(0, min(100, character.intelligence + intelligence))
+        }
+        
+        // Beauty change
+        if let beauty = effects.beautyChange {
+            character.beauty = max(0, min(100, character.beauty + beauty))
+        }
+        
+        // Luck change  
+        if let luck = effects.luckChange {
+            character.luck = max(0, min(100, character.luck + luck))
+        }
+        
+        // Aura change
+        if let aura = effects.auraChange {
+            character.aura = max(0, min(100, character.aura + aura))
+        }
+        
+        // Happiness change
+        if let happiness = effects.happinessChange {
+            character.happiness = max(0, min(100, character.happiness + happiness))
+        }
+        
+        // Stress change
+        if let stress = effects.stressChange {
+            character.stress = max(0, min(100, character.stress + stress))
+        }
+        
+        // Karma change
+        if let karma = effects.karmaChange {
+            character.karma = max(-100, min(100, character.karma + karma))
+        }
+        
+        // Health changes
+        if let healthChange = effects.healthChange {
+            if let physical = healthChange.physicalHealth {
+                character.healthSystem.physicalHealth = max(0, min(100, character.healthSystem.physicalHealth + physical))
+            }
+            if let mental = healthChange.mentalHealth {
+                character.healthSystem.mentalHealth = max(0, min(100, character.healthSystem.mentalHealth + mental))
+            }
+        }
+        
+        // Relationship changes
+        if let relationshipChanges = effects.relationshipChanges {
+            for change in relationshipChanges {
+                updateRelationship(change)
+            }
+        }
+    }
+    
+    private func loadStoryNode(_ nodeId: String) {
+        // Bu fonksiyon StoryData.json'dan node yüklemeli
+        // Şimdilik basit bir implementation
+        if let node = loadStoryNodeFromData(nodeId) {
+            currentStoryNode = node
+            applyNodeEffects(node)
+        }
+    }
+    
+    private func loadStoryNodeFromData(_ nodeId: String) -> StoryNode? {
+        // StoryData.json'dan node yükleme implementasyonu
+        // Şimdilik default node döndür
+        return StoryNode.default
+    }
+    
+    private func updateRelationship(_ change: RelationshipChange) {
+        // İlişki güncelleme implementasyonu
+        // Şimdilik boş bırak
     }
     
     func makeChoice(_ choice: String) {
@@ -374,7 +465,7 @@ class EffectManager {
         // Geçiş efektlerini yönet
     }
     
-    func applyVisualEffects(_ effects: [VisualEffect]) {
+    func applyVisualEffects(_ effects: [StoryVisualEffect]) {
         // Görsel efektleri uygula
     }
     
@@ -455,6 +546,23 @@ class CareerManager {
     }
 }
 
+class EducationManager {
+    func applyEducationChange(_ character: inout Character, change: EducationChange) {
+        // Eğitim değişikliklerini uygula
+    }
+    
+    func updateEducationOptions(_ options: EducationProfile) {
+        // Eğitim seçeneklerini güncelle
+    }
+}
+
+class AchievementManager {
+    func checkAchievements(for character: Character) -> [GameAchievement] {
+        // Başarımları kontrol et
+        return []
+    }
+}
+
 class SoundManager {
     func playBackgroundMusic(_ track: String) {
         // Müzik çal
@@ -488,6 +596,13 @@ struct CareerChange {
     let newCareer: Career?
     let salaryChange: Double?
     let promotionLevel: CareerLevel?
+}
+
+struct EducationChange {
+    let newLevel: EducationLevel?
+    let field: String?
+    let institution: String?
+    let gpaChange: Double?
 }
 
 struct WeatherEffect {
