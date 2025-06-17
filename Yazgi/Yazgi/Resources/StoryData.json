@@ -1,0 +1,465 @@
+[
+  {
+    "id": "start",
+    "description": "Hoş geldiniz! Yeni bir hayata başlamak üzeresiniz. Aileniz sizi büyük bir heyecanla bekliyor.",
+    "options": [
+      {
+        "text": "Dünyaya gözlerini aç",
+        "nextNodeId": "birth",
+        "effect": {
+          "happinessChange": 50,
+          "luckChange": 10
+        },
+        "visualStyle": {
+          "backgroundColor": "#4A90E2",
+          "textColor": "#FFFFFF",
+          "borderColor": "#2171C7",
+          "icon": "sunrise.fill",
+          "isGlowing": true,
+          "isPulsing": true
+        }
+      }
+    ],
+    "type": "life",
+    "backgroundImage": "birth_background",
+    "backgroundMusic": "peaceful_morning",
+    "ambientSound": "hospital_ambience",
+    "season": "spring",
+    "timeOfDay": "dawn",
+    "weather": "sunny",
+    "mood": "peaceful",
+    "transitionType": "dream",
+    "visualEffects": [
+      {
+        "type": "flowers",
+        "intensity": 0.3,
+        "duration": 5.0,
+        "delay": 0.0,
+        "color": "#FFB6C1"
+      }
+    ],
+    "waitForInput": true,
+    "customContent": [
+      {
+        "type": "animation",
+        "content": "baby_animation",
+        "style": {
+          "width": 200,
+          "height": 200,
+          "cornerRadius": 10,
+          "opacity": 0.9,
+          "blur": 0,
+          "animation": "fadeIn"
+        }
+      }
+    ]
+  },
+  {
+    "id": "birth",
+    "description": "Dünyaya gözlerini açtın. Etrafında beyaz önlüklü doktorlar ve sevinçten ağlayan ailen var.",
+    "options": [
+      {
+        "text": "İlk ağlamayı başlat",
+        "nextNodeId": "first_cry",
+        "effect": {
+          "healthChange": {
+            "physicalHealth": 5
+          },
+          "relationshipChanges": [
+            {
+              "targetId": "mother",
+              "changeType": "family",
+              "magnitude": 10
+            }
+          ]
+        }
+      }
+    ],
+    "type": "life",
+    "backgroundImage": "hospital_room",
+    "backgroundMusic": "gentle_lullaby",
+    "ambientSound": "hospital_ambience",
+    "season": "spring",
+    "timeOfDay": "morning",
+    "weather": "sunny",
+    "mood": "peaceful",
+    "transitionType": "fade",
+    "visualEffects": [
+      {
+        "type": "glow",
+        "intensity": 0.7,
+        "duration": 3.0,
+        "color": "#FFFFFF"
+      }
+    ],
+    "requirements": {
+      "minAge": 0,
+      "maxAge": 0
+    }
+  },
+  {
+    "id": "first_day",
+    "description": "Hastanedeki ilk gününüz. Hemşireler size temel testler yapıyor. Aileniz odanızda size eşlik ediyor. Babanız gururla size bakıyor ve anneniz sizi emziriyor.",
+    "options": [
+      {
+        "text": "Anne sütünü iç",
+        "nextNodeId": "family_visit",
+        "effect": {
+          "healthChange": {
+            "physicalHealth": 10
+          },
+          "relationshipChanges": [
+            {
+              "targetId": "mother",
+              "changeType": "family",
+              "magnitude": 10
+            }
+          ]
+        }
+      },
+      {
+        "text": "Uykuya dal",
+        "nextNodeId": "family_visit",
+        "effect": {
+          "healthChange": {
+            "physicalHealth": 5,
+            "mentalHealth": 5
+          }
+        }
+      }
+    ],
+    "type": "life",
+    "backgroundImage": "hospital_day",
+    "backgroundMusic": "lullaby",
+    "season": "spring",
+    "timeOfDay": "afternoon",
+    "weather": "sunny",
+    "mood": "peaceful",
+    "transitionType": "fade"
+  },
+  {
+    "id": "family_visit",
+    "description": "Akrabalarınız sizi görmeye geldi! Büyükanne ve büyükbabanız, teyzeleriniz, amcalarınız... Herkes size hediyeler getirmiş ve sizi kucaklamak için sabırsızlanıyor.",
+    "options": [
+      {
+        "text": "Aile üyeleriyle etkileşime gir",
+        "nextNodeId": "home_arrival",
+        "effect": {
+          "auraChange": 5,
+          "relationshipChanges": [
+            {
+              "targetId": "family",
+              "changeType": "family",
+              "magnitude": 15
+            }
+          ]
+        }
+      },
+      {
+        "text": "Etrafı keşfetmeye çalış",
+        "nextNodeId": "first_steps",
+        "effect": {
+          "intelligenceChange": 10,
+          "luckChange": -5
+        }
+      }
+    ],
+    "type": "life",
+    "age": 0
+  },
+  {
+    "id": "first_steps",
+    "description": "Artık bir yaşındasın ve ayakta durmaya çalışıyorsun. Annen ellerini uzatmış, seni cesaretlendiriyor.",
+    "options": [
+      {
+        "text": "Annenin ellerine doğru yürümeyi dene",
+        "nextNodeId": "successful_first_steps",
+        "effect": {
+          "intelligenceChange": 2,
+          "luckChange": 1,
+          "happinessChange": 10,
+          "healthChange": {
+            "physicalHealth": 5
+          }
+        },
+        "probability": 0.7
+      },
+      {
+        "text": "Emekleyerek gitmeyi tercih et",
+        "nextNodeId": "continue_crawling",
+        "effect": {
+          "intelligenceChange": 1,
+          "happinessChange": 5
+        }
+      }
+    ],
+    "type": "life",
+    "age": 1,
+    "backgroundImage": "living_room",
+    "backgroundMusic": "encouraging_tune",
+    "season": "autumn",
+    "timeOfDay": "morning",
+    "weather": "sunny",
+    "mood": "happy",
+    "requirements": {
+      "minAge": 1,
+      "maxAge": 1
+    }
+  },
+  {
+    "id": "walking",
+    "description": "İlk adımlarınızı atmaya hazırsınız! Aileniz heyecanla sizi izliyor.",
+    "options": [
+      {
+        "text": "Cesurca ilk adımı at",
+        "nextNodeId": "first_words",
+        "effect": {
+          "healthChange": {
+            "physicalHealthChange": 20
+          },
+          "intelligenceChange": 10,
+          "luckChange": 5
+        },
+        "probability": 0.6
+      },
+      {
+        "text": "Biraz daha bekle",
+        "nextNodeId": "first_words",
+        "effect": {
+          "healthChange": {
+            "physicalHealthChange": 5
+          }
+        }
+      }
+    ],
+    "type": "life",
+    "age": 1
+  },
+  {
+    "id": "first_words",
+    "description": "Ailen heyecanla ilk kelimeni söylemeni bekliyor. Baban 'baba', annen 'anne' demeni umuyor.",
+    "options": [
+      {
+        "text": "'Anne' de",
+        "nextNodeId": "said_mom",
+        "effect": {
+          "relationshipChanges": [
+            {
+              "targetId": "mother",
+              "changeType": "family",
+              "magnitude": 15
+            },
+            {
+              "targetId": "father",
+              "changeType": "family",
+              "magnitude": 5
+            }
+          ],
+          "intelligenceChange": 3,
+          "happinessChange": 10
+        }
+      },
+      {
+        "text": "'Baba' de",
+        "nextNodeId": "said_dad",
+        "effect": {
+          "relationshipChanges": [
+            {
+              "targetId": "father",
+              "changeType": "family",
+              "magnitude": 15
+            },
+            {
+              "targetId": "mother",
+              "changeType": "family",
+              "magnitude": 5
+            }
+          ],
+          "intelligenceChange": 3,
+          "happinessChange": 10
+        }
+      }
+    ],
+    "type": "life",
+    "age": 1,
+    "backgroundImage": "cozy_home",
+    "backgroundMusic": "family_moment",
+    "season": "winter",
+    "timeOfDay": "evening",
+    "weather": "snowy",
+    "mood": "happy",
+    "requirements": {
+      "minAge": 1,
+      "maxAge": 2
+    }
+  },
+  {
+    "id": "toddler_play",
+    "description": "Artık yürüyebiliyor ve basit kelimeler söyleyebiliyorsunuz. Oyuncaklarınızla oynamayı seviyorsunuz.",
+    "options": [
+      {
+        "text": "Yapboz ile oyna",
+        "nextNodeId": "preschool",
+        "effect": {
+          "intelligenceChange": 15,
+          "stressChange": -5
+        }
+      },
+      {
+        "text": "Top ile oyna",
+        "nextNodeId": "preschool",
+        "effect": {
+          "healthChange": {
+            "physicalHealthChange": 15
+          },
+          "happinessChange": 10
+        }
+      }
+    ],
+    "type": "life",
+    "age": 2
+  },
+  {
+    "id": "preschool",
+    "description": "Kreş zamanı geldi! İlk kez ailenizden ayrı kalacaksınız.",
+    "options": [
+      {
+        "text": "Heyecanla yeni arkadaşlar edin",
+        "nextNodeId": "kindergarten",
+        "effect": {
+          "intelligenceChange": 10,
+          "auraChange": 15,
+          "happinessChange": 10
+        }
+      },
+      {
+        "text": "Çekingen davran",
+        "nextNodeId": "kindergarten",
+        "effect": {
+          "stressChange": 10,
+          "intelligenceChange": 5
+        }
+      }
+    ],
+    "type": "education",
+    "age": 3
+  },
+  {
+    "id": "first_toy",
+    "description": "Büyükannen sana yumuşacık bir oyuncak ayı getirdi. Gözlerin parlıyor.",
+    "options": [
+      {
+        "text": "Ayıya sıkıca sarıl",
+        "nextNodeId": "love_teddy",
+        "effect": {
+          "happinessChange": 15,
+          "relationshipChanges": [
+            {
+              "targetId": "grandmother",
+              "changeType": "family",
+              "magnitude": 10
+            }
+          ]
+        }
+      },
+      {
+        "text": "Ayıyı incele",
+        "nextNodeId": "curious_about_teddy",
+        "effect": {
+          "intelligenceChange": 5,
+          "happinessChange": 10
+        }
+      }
+    ],
+    "type": "life",
+    "backgroundImage": "kids_room",
+    "backgroundMusic": "playful_tune",
+    "season": "spring",
+    "timeOfDay": "afternoon",
+    "weather": "sunny",
+    "mood": "happy",
+    "requirements": {
+      "minAge": 2,
+      "maxAge": 3
+    }
+  },
+  {
+    "id": "first_sibling",
+    "description": "Annen ve baban sana önemli bir haber vermek istiyor: Yakında bir kardeşin olacak!",
+    "options": [
+      {
+        "text": "Heyecanla gülümse",
+        "nextNodeId": "happy_about_sibling",
+        "effect": {
+          "happinessChange": 15,
+          "relationshipChanges": [
+            {
+              "targetId": "mother",
+              "changeType": "family",
+              "magnitude": 10
+            },
+            {
+              "targetId": "father",
+              "changeType": "family",
+              "magnitude": 10
+            }
+          ]
+        }
+      },
+      {
+        "text": "Endişelen",
+        "nextNodeId": "worried_about_sibling",
+        "effect": {
+          "stressChange": 10,
+          "happinessChange": -5
+        }
+      }
+    ],
+    "type": "life",
+    "backgroundImage": "family_living_room",
+    "backgroundMusic": "emotional_theme",
+    "season": "summer",
+    "timeOfDay": "evening",
+    "weather": "clear",
+    "mood": "dramatic",
+    "requirements": {
+      "minAge": 3,
+      "maxAge": 4
+    }
+  },
+  {
+    "id": "first_day_kindergarten",
+    "description": "Bugün kreşe başlıyorsun. Etrafta bir sürü yeni yüz ve oyuncak var.",
+    "type": "education",
+    "options": [
+      {
+        "text": "Diğer çocuklarla oynamaya git",
+        "nextNodeId": "make_friends_kindergarten",
+        "effect": {
+          "intelligenceChange": 5,
+          "happinessChange": 10,
+          "socialSkillChange": 15
+        }
+      },
+      {
+        "text": "Köşede kitaplara bak",
+        "nextNodeId": "explore_books_kindergarten",
+        "effect": {
+          "intelligenceChange": 10,
+          "happinessChange": 5,
+          "socialSkillChange": 5
+        }
+      }
+    ],
+    "backgroundImage": "kindergarten_class",
+    "backgroundMusic": "cheerful_kids",
+    "season": "autumn",
+    "timeOfDay": "morning",
+    "weather": "sunny",
+    "mood": "excited",
+    "requirements": {
+      "minAge": 4,
+      "maxAge": 5
+    }
+  }
+]
