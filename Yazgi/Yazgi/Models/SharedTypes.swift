@@ -96,35 +96,6 @@ enum Season: String, Codable {
     case winter = "Kış"
 }
 
-// Visual Effects
-struct VisualEffect: Codable {
-    var type: EffectType
-    var intensity: Double
-    var duration: TimeInterval
-    var delay: TimeInterval
-    var color: String?
-    
-    init(type: EffectType, intensity: Double, duration: TimeInterval, delay: TimeInterval = 0.0, color: String? = nil) {
-        self.type = type
-        self.intensity = intensity
-        self.duration = duration
-        self.delay = delay
-        self.color = color
-    }
-}
-
-enum EffectType: String, Codable {
-    case fade = "Solma"
-    case shake = "Sallama"
-    case blur = "Bulanıklaştırma"
-    case glow = "Parlama"
-    case particles = "Parçacık"
-    case flowers = "Çiçek"
-    case leaves = "Yaprak"
-    case snow = "Kar"
-    case rain = "Yağmur"
-    case storm = "Fırtına"
-}
 
 // Achievement System
 enum AchievementID: String, Codable, CaseIterable {
@@ -773,35 +744,6 @@ struct EconomicProfile: Codable {
     var economicGrowth: Double
 }
 
-// MARK: - Relationship Effects
-struct RelationshipEffect: Codable, Identifiable {
-    let id = UUID()
-    let type: RelationshipEffectType
-    let value: Int
-    let duration: TimeInterval?
-    let description: String
-    let target: String
-    
-    init(type: RelationshipEffectType, value: Int, duration: TimeInterval? = nil, description: String, target: String) {
-        self.type = type
-        self.value = value
-        self.duration = duration
-        self.description = description
-        self.target = target
-    }
-}
-
-enum RelationshipEffectType: String, Codable {
-    case trust = "Güven"
-    case intimacy = "Yakınlık"
-    case respect = "Saygı"
-    case compatibility = "Uyum"
-    case tension = "Gerginlik"
-    case influence = "Etki"
-    case attraction = "Çekim"
-    case support = "Destek"
-}
-
 // MARK: - Life Events
 struct LifeEvent: Codable, Identifiable {
     let id = UUID()
@@ -866,24 +808,6 @@ enum VisualEffectType: String, Codable {
     case color = "Renk"
 }
 
-// MARK: - Asset Extensions
-extension Asset {
-    var currentValue: Double {
-        if let rate = appreciationRate {
-            let years = Calendar.current.dateComponents([.year], from: purchaseDate, to: Date()).year ?? 0
-            return value * pow(1 + rate, Double(years))
-        }
-        return value
-    }
-    
-    var monthlyNetIncome: Double {
-        (monthlyIncome ?? 0) - (monthlyExpense ?? 0)
-    }
-    
-    var equity: Double {
-        currentValue - (loanBalance ?? 0)
-    }
-}
 
 // MARK: - NPC Extensions
 extension NPC {
@@ -1275,24 +1199,6 @@ extension GameTime {
     }
 }
 
-// MARK: - Asset Extensions
-extension Asset {
-    var currentValue: Double {
-        if let rate = appreciationRate {
-            let years = Calendar.current.dateComponents([.year], from: purchaseDate, to: Date()).year ?? 0
-            return value * pow(1 + rate, Double(years))
-        }
-        return value
-    }
-    
-    var monthlyNetIncome: Double {
-        (monthlyIncome ?? 0) - (monthlyExpense ?? 0)
-    }
-    
-    var equity: Double {
-        currentValue - (loanBalance ?? 0)
-    }
-}
 
 // MARK: - NPC Extensions
 extension NPC {
@@ -1507,42 +1413,6 @@ extension NPC {
     }
 }
 
-// MARK: - Supporting Types
-struct SharedExperience: Codable, Identifiable {
-    let id = UUID()
-    let title: String
-    let description: String
-    let date: Date
-    let type: SharedExperienceType
-    let location: String?
-    let emotionalImpact: Int // -100 to 100
-    let participants: [String]
-    let memories: [Memory]
-    
-    init(title: String, description: String, date: Date, type: SharedExperienceType, location: String?, emotionalImpact: Int, participants: [String], memories: [Memory]) {
-        self.title = title
-        self.description = description
-        self.date = date
-        self.type = type
-        self.location = location
-        self.emotionalImpact = emotionalImpact
-        self.participants = participants
-        self.memories = memories
-    }
-}
-
-enum SharedExperienceType: String, Codable {
-    case social = "Sosyal"
-    case adventure = "Macera"
-    case celebration = "Kutlama"
-    case travel = "Seyahat"
-    case learning = "Öğrenme"
-    case support = "Destek"
-    case conflict = "Çatışma"
-    case milestone = "Dönüm Noktası"
-}
-
-struct EconomicProfile: Codable {
     var averageIncome: IncomeLevel
     var costOfLiving: Double
     var unemploymentRate: Double

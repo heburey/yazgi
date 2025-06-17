@@ -1,7 +1,7 @@
 import Foundation
 
 struct Asset: Identifiable, Codable {
-    let id: UUID = UUID()
+    var id: UUID = UUID()
     var name: String
     var type: AssetType
     var value: Double
