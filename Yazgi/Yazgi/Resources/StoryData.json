@@ -1,34 +1,772 @@
 [
   {
     "id": "start",
-    "description": "0 yaşındasın. Doğum anın... Hayatın ilk seçimini yapmaya hazır mısın?",
+    "title": "Doğum",
+    "description": "0 yaşındasın. Dünyaya hoş geldin! ",
+    "minAge": 0,
+    "maxAge": 0,
+    "weight": 1,
+    "repeatable": false,
+    "requirements": [],
     "options": [
       {
         "text": "Ağla",
-        "nextNodeId": "cry",
+        "nextNodeId": null,
+        "advanceAge": false,
         "effect": {
-          "auraChange": 1,
-          "luckChange": -1
+          "happinessChange": 1,
+          "auraChange": 1
         }
       },
       {
-        "text": "Gülümse",
-        "nextNodeId": "smile",
+        "text": "Gül",
+        "nextNodeId": null,
+        "advanceAge": false,
         "effect": {
-          "auraChange": 2,
-          "intelligenceChange": 1
+          "happinessChange": 2,
+          "luckChange": 1
+        }
+      },
+      {
+        "text": "Sessizce bakın",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "healthChange": 1
         }
       }
     ]
   },
   {
-    "id": "cry",
-    "description": "Ağladın. Hemşire seni kucağına aldı. Ortam biraz gergin ama hayattasın.",
-    "options": []
+    "id": "komsu-evi",
+    "title": "Komşunun Salonu",
+    "description": "Ebeveynlerin seni işten geç kalacakları için komşuya bırakıyor. Evde yabancı kokular ve yeni yüzler var.",
+    "minAge": 1,
+    "maxAge": 4,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Oyuncakları paylaş",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1,
+          "looksChange": 1
+        }
+      },
+      {
+        "text": "Anneyi çağırmak için ağla",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -1,
+          "auraChange": -1
+        }
+      }
+    ]
   },
   {
-    "id": "smile",
-    "description": "Gülümsedin. Hemşire 'bu bebek ışık saçıyor' dedi. Aura +2!",
-    "options": []
+    "id": "krese-basla",
+    "title": "Kreşe Alışma",
+    "description": "Ailen seni kreşe yazdırmak istiyor. Yeni arkadaşlar, yeni kurallar...",
+    "minAge": 3,
+    "maxAge": 6,
+    "weight": 3,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Gönüllü git",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 3,
+          "happinessChange": 1,
+          "educationPrestigeChange": 2
+        }
+      },
+      {
+        "text": "Diren ve evde kal",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -2,
+          "smartsChange": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "erken-hastalik",
+    "title": "Acil Servis",
+    "description": "Yüksek ateşle hastaneye kaldırıldın. Doktorlar hızlıca ilgileniyor.",
+    "minAge": 1,
+    "maxAge": 6,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "İğne olurken dayan",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "healthChange": 1,
+          "happinessChange": -1
+        }
+      },
+      {
+        "text": "Korkudan doktoru it",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "healthChange": -2,
+          "looksChange": 1,
+          "happinessChange": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "kardes-dogumu",
+    "title": "Yeni Bir Kardeş",
+    "description": "Eve yeni bir bebek geliyor. İlgi bölünürken sen neredesin?",
+    "minAge": 2,
+    "maxAge": 8,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Yardım et, bez getir",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 2,
+          "looksChange": 1
+        }
+      },
+      {
+        "text": "İlgi kıskan, kapını kilitle",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -2,
+          "smartsChange": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "bosanma-velayet",
+    "title": "Velayet Kararı",
+    "description": "Ebeveynlerin ayrılıyor. Hakim, kiminle kalacağına karar verecek.",
+    "minAge": 6,
+    "maxAge": 12,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Hakime kendi sözünü söyle",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 2,
+          "reputationChange": 1
+        }
+      },
+      {
+        "text": "Sessiz kal, bekle",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "okul-ayrimcilik",
+    "title": "Sınıfta Mikroagresyon",
+    "description": "Öğretmen, görünüşün ve aksanınla ilgili imada bulunuyor. Sınıf gülüyor.",
+    "minAge": 7,
+    "maxAge": 13,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Söz al ve yanıt ver",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -1,
+          "reputationChange": 2
+        }
+      },
+      {
+        "text": "Arkadaşınla göz göze gel, dayanış",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1,
+          "networkChange": 1
+        }
+      },
+      {
+        "text": "İçine at",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 1,
+          "happinessChange": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ergen-kimlik",
+    "title": "Kimlik Arayışı",
+    "description": "Hangi kelime sana iyi geliyor? Non-binary, biseksüel, sadece ben?",
+    "minAge": 13,
+    "maxAge": 18,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Açıkça paylaş",
+        "nextNodeId": "aktivizm",
+        "advanceAge": false,
+        "effect": {
+          "auraChange": 2,
+          "luckChange": -1
+        }
+      },
+      {
+        "text": "Güvendiğin bir kişiye anlat",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "auraChange": 1,
+          "beautyChange": 1
+        }
+      },
+      {
+        "text": "Şimdilik kendine sakla",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "luckChange": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "universite-sinav",
+    "title": "Sınav Sezonu",
+    "description": "Sınavlar yaklaşıyor. Çalışma notların yırtık, bütçe kısıtlı.",
+    "minAge": 16,
+    "maxAge": 19,
+    "weight": 3,
+    "repeatable": false,
+    "requirements": [
+      {
+        "minIntelligence": 40
+      }
+    ],
+    "options": [
+      {
+        "text": "Burs kovalayıp sabah akşam çalış",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 4,
+          "happinessChange": -1,
+          "educationPrestigeChange": 5,
+          "incomePowerChange": 3,
+          "setEducation": "Üniversite"
+        }
+      },
+      {
+        "text": "Part-time işe gir, dersleri azalt",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "moneyChange": 2000,
+          "smartsChange": -1,
+          "happinessChange": 1
+        }
+      },
+      {
+        "text": "Sınavı boşver, meslek lisesine kay",
+        "nextNodeId": "ilk-is",
+        "advanceAge": false,
+        "effect": {
+          "looksChange": 1,
+          "educationPrestigeChange": -3,
+          "incomePowerChange": 1,
+          "setCareerPath": "Zanaat",
+          "setEducation": "Lise"
+        }
+      }
+    ]
+  },
+  {
+    "id": "aktivizm",
+    "title": "Sokağın Nabzı",
+    "description": "Yerel bir queer kolektif seni yürüyüşe çağırıyor. Güvenlik güçleri sert davranıyor.",
+    "minAge": 15,
+    "maxAge": 25,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [
+      {
+        "minAura": 40
+      }
+    ],
+    "options": [
+      {
+        "text": "Önde yürü, slogan at",
+        "nextNodeId": "aktivizm-tepkisi",
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -1,
+          "reputationChange": 4
+        }
+      },
+      {
+        "text": "Lojistikte çalış, görünür olma",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 1,
+          "networkChange": 2,
+          "reputationChange": 2
+        }
+      },
+      {
+        "text": "Bu tur pas geç",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "aktivizm-tepkisi",
+    "title": "Sert Müdahale",
+    "description": "Polis müdahalesi sertleşti. Kimlik kontrolü, gözaltı riski...",
+    "minAge": 15,
+    "maxAge": 25,
+    "weight": 1,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Sprey gazına rağmen kal",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "healthChange": -2,
+          "happinessChange": -1,
+          "reputationChange": 3
+        }
+      },
+      {
+        "text": "Kalabalıkla birlikte geri çekil",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ilk-is",
+    "title": "İlk Maaş",
+    "description": "İş buldun. Ücret düşük ama bağımsızlık kokusu var.",
+    "minAge": 18,
+    "maxAge": 25,
+    "weight": 3,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Maaşı biriktir, kursa yazıl",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 2,
+          "incomePowerChange": 4,
+          "moneyChange": 5000,
+          "setJobTitle": "Junior",
+          "setCareerPath": "İş Dünyası"
+        }
+      },
+      {
+        "text": "Eve katkı yap",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1,
+          "moneyChange": -500
+        }
+      },
+      {
+        "text": "Kendini ödüllendir",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 2,
+          "moneyChange": -1000
+        }
+      }
+    ]
+  },
+  {
+    "id": "borc-kredi",
+    "title": "Kredi Kapısı",
+    "description": "Bankadan eğitim veya sağlık için kredi teklifi aldın. Faiz can yakıyor.",
+    "minAge": 19,
+    "maxAge": 26,
+    "weight": 1,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Çek ve yatır",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 1,
+          "moneyChange": 10000,
+          "incomePowerChange": 2
+        }
+      },
+      {
+        "text": "Riski reddet",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1,
+          "moneyChange": -1000
+        }
+      }
+    ]
+  },
+  {
+    "id": "goc-dusunceleri",
+    "title": "Göç Hayali",
+    "description": "Yaşadığın ülke seni sıkıştırıyor. Yeni bir ülke, yeni başlangıç fikri cazip.",
+    "minAge": 17,
+    "maxAge": 30,
+    "weight": 1,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Dil kursuna yazıl",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 2,
+          "looksChange": 1,
+          "educationPrestigeChange": 2
+        }
+      },
+      {
+        "text": "Pasaport masraflarına çalış",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "moneyChange": 3000,
+          "happinessChange": -1
+        }
+      },
+      {
+        "text": "Kal, burayı dönüştürmeyi dene",
+        "nextNodeId": "aktivizm",
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 1,
+          "reputationChange": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ilk-okul",
+    "title": "İlkokula Başladın",
+    "description": "İlk günün! Yeni arkadaşlar, yeni öğretmenler ve yeni bir dünya seni bekliyor.",
+    "minAge": 6,
+    "maxAge": 7,
+    "weight": 5,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Heyecanlı ol ve öğrenmeye açık ol",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 3,
+          "happinessChange": 2,
+          "educationPrestigeChange": 2
+        }
+      },
+      {
+        "text": "Utangaç ol ve kenarda dur",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -1,
+          "networkChange": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ortaokul",
+    "title": "Ortaokula Geçiş",
+    "description": "Daha büyük bir okul, daha fazla öğrenci. Yeni bir başlangıç.",
+    "minAge": 12,
+    "maxAge": 13,
+    "weight": 4,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Aktif ol ve kulüplere katıl",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 2,
+          "networkChange": 3,
+          "happinessChange": 2,
+          "setEducation": "Lise"
+        }
+      },
+      {
+        "text": "Sadece derslere odaklan",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 4,
+          "happinessChange": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "universite-basla",
+    "title": "Üniversiteye Başladın",
+    "description": "Yükseköğrenim hayatı başlıyor! Bağımsızlık, yeni arkadaşlar ve gelecek seni bekliyor.",
+    "minAge": 18,
+    "maxAge": 20,
+    "weight": 4,
+    "repeatable": false,
+    "requirements": [
+      {
+        "minIntelligence": 50
+      }
+    ],
+    "options": [
+      {
+        "text": "Derslere odaklan ve başarılı ol",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 5,
+          "educationPrestigeChange": 6,
+          "incomePowerChange": 5,
+          "setEducation": "Üniversite"
+        }
+      },
+      {
+        "text": "Sosyal hayata odaklan",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "networkChange": 5,
+          "happinessChange": 3,
+          "smartsChange": 2,
+          "setEducation": "Üniversite"
+        }
+      },
+      {
+        "text": "Part-time iş bul",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "moneyChange": 5000,
+          "incomePowerChange": 3,
+          "smartsChange": 1,
+          "setEducation": "Üniversite"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mezuniyet",
+    "title": "Mezun Oldun!",
+    "description": "Üniversite bitti. Artık gerçek dünyaya adım atma zamanı.",
+    "minAge": 22,
+    "maxAge": 25,
+    "weight": 3,
+    "repeatable": false,
+    "requirements": [
+      {
+        "minIntelligence": 60
+      }
+    ],
+    "options": [
+      {
+        "text": "İş aramaya başla",
+        "nextNodeId": "ilk-is",
+        "advanceAge": false,
+        "effect": {
+          "incomePowerChange": 3,
+          "happinessChange": 2,
+          "setEducation": "Yüksek Lisans"
+        }
+      },
+      {
+        "text": "Yüksek lisansa devam et",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "smartsChange": 5,
+          "educationPrestigeChange": 8,
+          "incomePowerChange": 5,
+          "setEducation": "Yüksek Lisans"
+        }
+      }
+    ]
+  },
+  {
+    "id": "evlilik-teklifi",
+    "title": "Evlilik Teklifi",
+    "description": "Partnerin sana evlenme teklifi yaptı! Ne yapacaksın?",
+    "minAge": 20,
+    "maxAge": 40,
+    "weight": 2,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Evet de",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 15,
+          "setRelationship": "Evli"
+        }
+      },
+      {
+        "text": "Henüz erken",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "hamilelik",
+    "title": "Hamilelik Haberi",
+    "description": "Hamile olduğunu öğrendin! Bu büyük bir haber.",
+    "minAge": 18,
+    "maxAge": 45,
+    "weight": 2,
+    "repeatable": true,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Mutlu ol ve hazırlan",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 10,
+          "healthChange": -2
+        }
+      },
+      {
+        "text": "Endişelen ve plan yap",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -3,
+          "healthChange": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "is-bul",
+    "title": "İş Fırsatı",
+    "description": "Yeni bir iş fırsatı çıktı. Başvurmayı düşünüyor musun?",
+    "minAge": 18,
+    "maxAge": 60,
+    "weight": 3,
+    "repeatable": true,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Başvur ve kabul et",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "incomePowerChange": 5,
+          "happinessChange": 3,
+          "setJobTitle": "Junior"
+        }
+      },
+      {
+        "text": "Bekle, daha iyisi çıkar",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "emeklilik",
+    "title": "Emeklilik Zamanı",
+    "description": "Emeklilik yaşına geldin. Artık çalışma hayatından ayrılma zamanı.",
+    "minAge": 65,
+    "maxAge": 70,
+    "weight": 3,
+    "repeatable": false,
+    "requirements": [],
+    "options": [
+      {
+        "text": "Emekli ol ve rahatla",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": 5,
+          "incomePowerChange": -10
+        }
+      },
+      {
+        "text": "Çalışmaya devam et",
+        "nextNodeId": null,
+        "advanceAge": false,
+        "effect": {
+          "happinessChange": -2,
+          "healthChange": -1
+        }
+      }
+    ]
   }
 ]
